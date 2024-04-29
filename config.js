@@ -8,13 +8,13 @@ import axios from 'axios';
 import moment from 'moment-timezone';
 
 global.owner = [
-  ['‪22247072475‬', '🔪 JOHAN ', true],
-  ['22247072475', ' 3MK 💸', true],
+  ['‪201095499866', '🔪 سناركوو ', true],
+  ['201095499866', ' 3MK 💸', true],
 ];
 
 global.xaxa = 'kana'
-global.suittag = ['22247072475', '22247072475'];
-global.prems = ['22247072475', '22247072475'];
+global.suittag = ['201095499866', '201095499866'];
+global.prems = ['201095499866', '201095499866'];
 
 global.packname = 'Nezuko🧸 ';
 global.author = '★Nezuko🌺★';
@@ -50,7 +50,7 @@ global.mysticbot = 'https://chat.whatsapp.com/FE54Nj3CorLAcuEzpXZHA7';
 global.waitt = '*⌛ _جاري التحميل..._*\n\n*▰▰▰▱▱▱▱▱*';
 global.waittt = '*⌛ _جاري التحميل..._*\n\n*▰▰▰▱▱▱▱▱*';
 global.waitttt = '*⌛ _جاري التحميل..._*\n\n*▰▰▰▱▱▱▱▱*';
-global.nomorown = '22247072475';
+global.nomorown = '201095499866';
 global.pdoc = ['application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/msword', 'application/pdf', 'text/rtf'];
 global.cmenut = '❖––––––『';
 global.cmenub = '┊✦ ';
