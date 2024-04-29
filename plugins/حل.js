@@ -1,31 +1,27 @@
-import similarity from 'similarity'
-const threshold = 0.72
-export async function before(m) {
-    let id = m.chat
-    if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !m.text || !/استخدم.*انسحب/i.test(m.quoted.text) || /.*hhint/i.test(m.text))
-        return !0
-    this.tebakbendera = this.tebakbendera ? this.tebakbendera : {}
-    if (!(id in this.tebakbendera))
-        return this.reply(m.chat, '*لقد انتهي هذا السؤال اكتب علم لتظهر أسأله جديده*', m)
-    if (m.quoted.id == this.tebakbendera[id][0].id) {
-        let isSurrender = /^(انسحب|surr?ender)$/i.test(m.text)
-        if (isSurrender) {
-            clearTimeout(this.tebakbendera[id][3])
-            delete this.tebakbendera[id]
-            return this.reply(m.chat, '*طلع فاشل و استسلم :( !*', m)
-        }
-        let json = JSON.parse(JSON.stringify(this.tebakbendera[id][1]))
+// كود تم نشره بواسطه zoro
+// تابع لقناه https://whatsapp.com/channel/0029VaYMyqu4CrfgGRLXfv3c
+import fetch from 'node-fetch'
+import uploader from '../lib/uploadImage.js'
 
-        if (m.text.toLowerCase() == json.name.toLowerCase().trim()) {
-            global.db.data.users[m.sender].exp += this.tebakbendera[id][2]
-            this.reply(m.chat, `*❐┃اجـابـة صـحـيـحـة┃✅ ❯*\n\n*❐↞┇الـجـائـزة💰↞${this.tebakbendera[id][2]} نقطه*`, m)
-            clearTimeout(this.tebakbendera[id][3])
-            delete this.tebakbendera[id]
-        } else if (similarity(m.text.toLowerCase(), json.name.toLowerCase().trim()) >= threshold)
-            m.reply(`*لقد كنت علي وشك النجاح*!`)
-        else
-            this.reply(m.chat, `❐┃اجـابـة خـاطـئـة┃❌ ❯`, m)
-    }
-    return !0
+var handler = async (m, { conn, text, command, usedPrefix }) => {
+
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || q.mediaType || ''
+if (/image/g.test(mime) && !/webp/g.test(mime)) {
+let buffer = await q.download()
+
+await m.reply(wait)
+
+let media = await (uploader)(buffer)
+let zoro = await (await fetch(`https://aemt.me/bardimg?url=${media}&text=${text}`)).json()
+
+conn.sendMessage(m.chat, { text: zoro.result }, { quoted: m })
+
+} else throw `*الرجاء الرد علي صوره\n\n*مثال*\n${usedPrefix + command} اخبرني بالمعلومات`
+  
 }
-export const exp = 0
+handler.help = ['ZORO']
+handler.tags = ['ZORO']
+handler.command = /^(حل|شوف)$/i
+
+export default handler
